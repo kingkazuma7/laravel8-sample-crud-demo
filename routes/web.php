@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix'=>'member'], function () {
+    Route::get('index', 'MemberController@index')->name('member.index');
+});
