@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,5 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix'=>'member'], function () {
-    Route::get('index', 'MemberController@index')->name('member.index');
+    Route::get('index', [MemberController::class, 'index'])->name('member.index'); // クラス名を使用してコントローラーを指定
 });
