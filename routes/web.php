@@ -19,5 +19,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix'=>'member'], function () {
-    Route::get('index', [MemberController::class, 'index'])->name('member.index'); // クラス名を使用してコントローラーを指定
+    Route::get('index', [MemberController::class, 'index'])->name('member.index');
+    Route::get('create', [MemberController::class, 'create'])->name('member.create'); 
+    Route::post('store', [MemberController::class, 'store'])->name('member.store'); 
 });

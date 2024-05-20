@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Models\Member;
 
 class MemberController extends Controller
 {
@@ -30,18 +31,26 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('member/create');
     }
 
     /**
      * Store a newly created resource in storage.
+     * 新規追加画面で入力した値をDBに保存
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        // todo: なぜ単数系?
+        $member = new Member;
+        $member->name=$request->input('name');
+        $member->telephone=$request->input('telephone');
+        $member->email=$request->input('email');
+        $member->save();
+
+        return redirect('member/index');
     }
 
     /**
