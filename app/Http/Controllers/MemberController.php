@@ -55,13 +55,15 @@ class MemberController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * /member/show/idにアクセスした場合
+     * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $member = Member::find($id);
+        return view('member/show', compact('member'));
     }
 
     /**
