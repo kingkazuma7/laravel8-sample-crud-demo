@@ -16,3 +16,5 @@
 {{$member->email}}
 </li>
 </ul>
+
+<a href="{{ route('member.index') }}">{{ __('一覧へ戻る') }}</a>
