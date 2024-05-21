@@ -17,4 +17,5 @@
 </li>
 </ul>
 
+<a href="{{route('member.edit',['id'=>$member->id])}}">{{ __('編集') }}</a>
 <a href="{{ route('member.index') }}">{{ __('一覧へ戻る') }}</a>

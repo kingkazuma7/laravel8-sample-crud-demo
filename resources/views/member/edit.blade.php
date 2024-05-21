@@ -18,4 +18,5 @@
     </ul>
 
     <input type="submit" value="更新する">
-</form>
+  </form>
+  <a href="{{route('member.show',['id'=>$member->id])}}">{{ __('詳細に戻る') }}</a>
