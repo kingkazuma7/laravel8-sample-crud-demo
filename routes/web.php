@@ -23,4 +23,5 @@ Route::group(['prefix'=>'member'], function () {
     Route::get('create', [MemberController::class, 'create'])->name('member.create'); 
     Route::post('store', [MemberController::class, 'store'])->name('member.store'); 
     Route::get('show/{id}', [MemberController::class, 'show'])->name('member.show'); 
+    Route::get('edit/{id}', [MemberController::class, 'edit'])->name('member.edit'); 
 });

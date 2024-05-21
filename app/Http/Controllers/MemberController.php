@@ -68,13 +68,15 @@ class MemberController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 編集(edit)
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $member = Member::find($id);
+        return view('member/edit', compact('member'));
     }
 
     /**
