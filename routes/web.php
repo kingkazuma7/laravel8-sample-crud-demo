@@ -24,4 +24,5 @@ Route::group(['prefix'=>'member'], function () {
     Route::post('store', [MemberController::class, 'store'])->name('member.store'); 
     Route::get('show/{id}', [MemberController::class, 'show'])->name('member.show'); 
     Route::get('edit/{id}', [MemberController::class, 'edit'])->name('member.edit'); 
+    Route::post('update/{id}', [MemberController::class, 'update'])->name('member.update'); 
 });

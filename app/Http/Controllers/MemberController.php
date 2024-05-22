@@ -81,6 +81,7 @@ class MemberController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 編集画面で「更新」ボタンを押した時の動作
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -88,7 +89,17 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $member = Member::find($id);
+
+        $member->name=$request->input('name');
+        $member->telephone=$request->input('telephone');
+        $member->email=$request->input('email');
+
+        // DBに保存
+        $member->save();
+
+        // 処理が終わったらmember/indexにリダイレクト
+        return redirect('member/index');
     }
 
     /**

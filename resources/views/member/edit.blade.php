@@ -1,6 +1,6 @@
 <h1>編集</h1>
 
-<form method="POST" action="">
+<form method="POST" action="{{ route('member.update', ['id' => $member->id]) }}">
     @csrf
     <ul>
       <li>
