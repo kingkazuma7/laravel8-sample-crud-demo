@@ -116,6 +116,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    // 'attributes' => [],
+    'attributes' => ['email'=>'メールアドレス',
+    'name'=>'名前'
+    ],
 
 ];
