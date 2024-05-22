@@ -104,12 +104,15 @@ class MemberController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * /member/destroy/idにアクセスした場合
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $member = Member::find($id);
+        $member->delete();
+        return redirect('member/index');
     }
 }
