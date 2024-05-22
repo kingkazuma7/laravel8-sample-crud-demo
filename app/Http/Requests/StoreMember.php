@@ -24,7 +24,25 @@ class StoreMember extends FormRequest
     public function rules()
     {
         return [
-            //
+        'name' => [
+            'string',
+            'required',
+            'max:20'
+            ],
+
+        'telephone' => [
+            'string',
+            'nullable',
+            'max:13',
+            'unique:members'
+            ],
+
+        'email' => [
+            'nullable',
+            'max:255',
+            'email',
+            'unique:members'
+            ]
         ];
     }
 }

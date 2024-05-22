@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Models\Member;
+use App\Http\Requests\StoreMember;
 
 class MemberController extends Controller
 {
@@ -41,7 +42,7 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMember $request)
     {
         // todo: なぜ単数系?
         $member = new Member;
