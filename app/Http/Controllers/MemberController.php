@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Models\Member;
-use App\Http\Requests\StoreMember;
+use App\Http\Requests\StoreMember; // 新規保存
+use App\Http\Requests\UpdateMember; // 上書き保存
 
 class MemberController extends Controller
 {
@@ -19,7 +20,7 @@ class MemberController extends Controller
         //memberテーブルからname,telephone,emailを$membersに格納
         $members=DB::table('members')
         ->select('id', 'name', 'telephone', 'email')
-        ->get();
+        ->paginate(20);
 
         //viewを返す(compactでviewに$membersを渡す)
         return view('member/index', compact('members'));
@@ -88,7 +89,7 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMember $request, $id)
     {
         $member = Member::find($id);
 

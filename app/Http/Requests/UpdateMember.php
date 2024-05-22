@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateMember extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateMember extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,27 @@ class UpdateMember extends FormRequest
     public function rules()
     {
         return [
-            //
+        'name' => [
+            'string',
+            'required',
+            'max:20'
+        ],
+
+        'telephone' => [
+            'string',
+            'nullable',
+            'max:13',
+            //既存の値も許可
+            Rule::unique('members')->ignore($this->id)
+        ],
+
+        'email' => [
+            'nullable',
+            'max:255',
+            'email',
+            //既存の値も許可
+            Rule::unique('members')->ignore($this->id)
+            ]
         ];
     }
 }

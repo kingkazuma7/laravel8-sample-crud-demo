@@ -18,4 +18,6 @@
 @endforeach
 </table>
 
+{{$members->links()}}
+
 <a href="{{ route('member.create') }}">{{ __('新規作成') }}</a>
