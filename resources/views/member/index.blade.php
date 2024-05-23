@@ -1,5 +1,14 @@
 <h1>一覧表示</h1>
 
+<form method="GET" action="{{ route('member.search') }}">
+  @csrf
+  <div>
+    <label for="form-search">検索</label>
+    <input type="search" name="q" id="form-search">
+    <button type="submit">検索</button>
+  </div>
+</form>
+
 <table>
 <tr>
 <th>ID</th>

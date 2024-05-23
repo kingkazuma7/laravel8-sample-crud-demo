@@ -20,7 +20,7 @@ class MemberController extends Controller
         //memberテーブルからname,telephone,emailを$membersに格納
         $members=DB::table('members')
         ->select('id', 'name', 'telephone', 'email')
-        ->paginate(20);
+        ->paginate(10);
 
         //viewを返す(compactでviewに$membersを渡す)
         return view('member/index', compact('members'));
@@ -116,5 +116,34 @@ class MemberController extends Controller
         $member = Member::find($id);
         $member->delete();
         return redirect('member/index');
+    }
+
+    /**
+     * 検索機能
+     * memberテーブル内を検索し、結果をページネーションで表示する
+     * 
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request) {
+        $search = $request->input('q');
+        $query = DB::table('members');
+
+        // 検索ワードの全角スペースを半角スペースに変換
+        $search_spaceharf = mb_convert_kana($search, 's');
+        
+        // 検索ワードを半角スペースで区切る 不要な空白文字を削除
+        $keyword_array = preg_split('/[\s]+/', $search_spaceharf, -1, PREG_SPLIT_NO_EMPTY);
+
+        // 検索ワードをループで回してマッチするレコードを探す
+        foreach ($keyword_array as $keyword) {
+            $query->where('name', 'like', '%'.$keyword.'%')
+						->orWhere('email', 'like', "%{$keyword}%");
+        }
+
+        $query->select('id', 'name', 'telephone', 'email');
+        $members=$query->paginate(10);
+
+        return view('member/index', compact('members'));
     }
 }
